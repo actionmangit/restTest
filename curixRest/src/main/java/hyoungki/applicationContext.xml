@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://192.168.1.59:1433;DatabaseName=CURIX55_LHK"/>
+		<property name="username" value="sa"/>
+		<property name="password" value="1234"/>
+	</bean>
+	
+	<bean id="confDao" class="hyoungki.conf.dao.ConfDaoJdbc">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="MS-SQL" class="org.springframework.jdbc.support.SQLErrorCodes">
+		<property name="databaseProductName">
+			<value>Microsoft SQL Server</value>
+		</property>
+		<property name="badSqlGrammarCodes">
+			<value>156,170,207,208,209</value>
+		</property>
+		<property name="permissionDeniedCodes">
+			<value>229</value>
+		</property>
+		<property name="duplicateKeyCodes">
+			<value>2601,2627</value>
+		</property>
+		<property name="dataIntegrityViolationCodes">
+			<value>544,8114,8115</value>
+		</property>
+		<property name="dataAccessResourceFailureCodes">
+			<value>4060</value>
+		</property>
+		<property name="cannotAcquireLockCodes">
+			<value>1222</value>
+		</property>
+		<property name="deadlockLoserCodes">
+			<value>1205</value>
+		</property>
+	</bean>
+</beans>
