@@ -45,7 +45,8 @@ public class Conf {
 	private Byte ownerType;
 	private String ownerName;
 	private Integer ownerRoomNo;
-	private Byte scheduleType;
+	//private Byte scheduleType;
+	private ScheduleType scheduleType;
 	private Integer scheduleValue;
 	private Byte deleteConfFile;
 	private Byte allowOpenConfFile;
@@ -58,8 +59,10 @@ public class Conf {
 		
 	}
 	
-	public Conf(String ownerIdx, String title, String creatorUcid, String resvDate) {
+	public Conf(String ownerIdx, String roomId, String title, String creatorUcid, String resvDate, ScheduleType scheduleType) {
+		
 		this.ownerIdx		= ownerIdx;
+		this.roomId			= roomId;
 		this.title			= title;
 		this.creatorUcid	= creatorUcid;
 		this.resvDate		= resvDate;
@@ -67,10 +70,12 @@ public class Conf {
 		this.endDate		= resvDate;
 		this.workDate		= resvDate;
 		this.workerId		= creatorUcid;
+		this.scheduleType	= scheduleType;
 	}
 	
 	@Override
 	public String toString() {
+		
 		return "Conf [roomNo=" + roomNo + ", ownerIdx=" + ownerIdx + ", confServerIdx=" + confServerIdx + ", roomId="
 				+ roomId + ", roomPasswd=" + roomPasswd + ", isDeleted=" + isDeleted + ", isPublic=" + isPublic
 				+ ", availNum=" + availNum + ", confType=" + confType + ", confMode=" + confMode + ", mcuMode="
@@ -90,6 +95,14 @@ public class Conf {
 				+ pinCode + ", conflistMode=" + conflistMode + "]";
 	}
 	
+	public ScheduleType getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(ScheduleType scheduleType) {
+		this.scheduleType = scheduleType;
+	}
+
 	public Integer getRoomNo() {
 		return roomNo;
 	}
@@ -347,12 +360,6 @@ public class Conf {
 	}
 	public void setOwnerRoomNo(Integer ownerRoomNo) {
 		this.ownerRoomNo = ownerRoomNo;
-	}
-	public Byte getScheduleType() {
-		return scheduleType;
-	}
-	public void setScheduleType(Byte scheduleType) {
-		this.scheduleType = scheduleType;
 	}
 	public Integer getScheduleValue() {
 		return scheduleValue;

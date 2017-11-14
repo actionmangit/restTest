@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import hyoungki.conf.dao.impl.ConfDao;
 import hyoungki.conf.domain.Conf;
+import hyoungki.conf.domain.ScheduleType;
 import hyoungki.exception.DuplicateUserIdException;
 
 public class ConfDaoJdbc implements ConfDao{
@@ -29,9 +30,11 @@ public class ConfDaoJdbc implements ConfDao{
 					
 					Conf	conf	= new Conf();
 					
+					conf.setRoomId(rs.getString("room_id"));
 					conf.setCreatorUcid(rs.getString("creator_ucid"));
 					conf.setTitle(rs.getString("title"));
 					conf.setResvDate(rs.getString("resv_date"));
+					conf.setScheduleType(ScheduleType.valueOf(rs.getString("schedule_type")));
 					
 					return conf;
 				}

@@ -14,6 +14,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import hyoungki.conf.dao.ConfDaoJdbc;
 import hyoungki.conf.domain.Conf;
+import hyoungki.conf.domain.ScheduleType;
 
 public class ConfDaoTest {
 	
@@ -37,9 +38,9 @@ public class ConfDaoTest {
 		
 		dao.setDataSource(dataSource);
 		
-		this.conf1	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "형기회의01", "user01", "20170710000000");
-		this.conf2	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "형기회의02", "user02", "20170810000000");
-		this.conf3	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "형기회의03", "user03", "20170910000000");
+		this.conf1	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "B500F6FE-7C34-45ca-A448-F6DCC06574D6", "형기회의01", "user01", "20170710000000", ScheduleType.DAY);
+		this.conf2	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "58D7744D-0DE9-42a7-BC82-87141B98B4B7", "형기회의02", "user02", "20170810000000", ScheduleType.MONTH);
+		this.conf3	= new Conf("3EF9FD4C-7745-4B78-807C-5BC34D0C6C9B", "9FE68FCB-B35E-4c36-B58E-39A37CB77028", "형기회의03", "user03", "20170910000000", ScheduleType.WEEK);
 	}
 
 	@Test
@@ -52,14 +53,13 @@ public class ConfDaoTest {
 		dao.add(conf2);
 		assertThat(dao.getCount(), equalTo(2));
 		
-		Conf		confget1	= dao.get(conf1.getCreatorUcid());
+		Conf		confget1	= dao.get(conf1.getRoomId());
+		assertThat(confget1.getRoomId(), equalTo(conf1.getRoomId()));
 		assertThat(confget1.getTitle(), equalTo(conf1.getTitle()));
-		assertThat(confget1.getCreatorUcid(), equalTo(conf1.getCreatorUcid()));
 		
-		Conf		confget2	= dao.get(conf2.getCreatorUcid());
+		Conf		confget2	= dao.get(conf2.getRoomId());
+		assertThat(confget2.getRoomId(), equalTo(conf2.getRoomId()));
 		assertThat(confget2.getTitle(), equalTo(conf2.getTitle()));
-		assertThat(confget2.getCreatorUcid(), equalTo(conf2.getCreatorUcid()));
-		assertThat(confget2.getCreatorUcid(), equalTo(conf2.getCreatorUcid()));
 	}
 	
 	@Test
@@ -115,7 +115,7 @@ public class ConfDaoTest {
 	}
 	
 	private void checkSameConf(Conf conf1, Conf conf2) {
-		assertThat(conf1.getCreatorUcid(), equalTo(conf2.getCreatorUcid()));
+		assertThat(conf1.getRoomId(), equalTo(conf2.getRoomId()));
 		assertThat(conf1.getTitle(), equalTo(conf1.getTitle()));
 		assertThat(conf1.getResvDate(), equalTo(conf1.getResvDate()));
 	}
