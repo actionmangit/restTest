@@ -29,9 +29,9 @@ public class ConfDaoTest {
 		dao	= new ConfDaoJdbc();
 		SingleConnectionDataSource	dataSource	= new SingleConnectionDataSource();
 		
-		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		dataSource.setUrl("jdbc:sqlserver://192.168.1.59:1433;DatabaseName=CURIX55_LHK");
-		dataSource.setUsername("sa");
+		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+		dataSource.setUrl("jdbc:mariadb://127.0.0.1:3306/curix55");
+		dataSource.setUsername("root");
 		dataSource.setPassword("1234");
 		dataSource.setSuppressClose(true);
 		

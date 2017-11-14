@@ -5,9 +5,9 @@
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-		<property name="url" value="jdbc:sqlserver://192.168.1.59:1433;DatabaseName=CURIX55_LHK"/>
-		<property name="username" value="sa"/>
+		<property name="driverClass" value="org.mariadb.jdbc.Driver"/>
+		<property name="url" value="jdbc:mariadb://127.0.0.1:3306;DatabaseName=CURIX55"/>
+		<property name="username" value="root"/>
 		<property name="password" value="1234"/>
 	</bean>
 	

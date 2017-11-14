@@ -89,6 +89,7 @@ public class Conf {
 				+ ", allowSaveConfFile=" + allowSaveConfFile + ", phoneEnPassword=" + phoneEnPassword + ", pinCode="
 				+ pinCode + ", conflistMode=" + conflistMode + "]";
 	}
+	
 	public Integer getRoomNo() {
 		return roomNo;
 	}
